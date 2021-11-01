@@ -1,0 +1,37 @@
+name: 'Deploy Vue Apps to Github Pages'
+description: 'This git hub action build the vue app and creates a new branch names gh-pages to deploy them to github pages.'
+inputs:
+  username:
+    description: 'Username'
+    required: true
+  reponame:
+    description: 'Name of the repo where the actyion is added.'
+    required: true
+  token:
+    description: 'Your Github token'
+    required: true
+  buildscript:
+    description: 'Build script specified in packgae.json By default takes build as the script).'
+    required: false
+    default: 'build'
+  basebranchname:
+    description: 'Build script specified in packgae.json By default takes build as the script).'
+    required: false
+    default: 'main'
+runs:
+  using: "composite"
+  steps:
+      - name: Build Vue
+        run: |
+              npm ci
+              npm run build
+        shell: bash
+      - name: Create gh-pages
+        run: |
+              cd dist
+              ln -s index.html 404.html
+              git init
+              git add .
+              git commit -m '${{ inputs.gitmsg }}'
+              git push -f https://${{ inputs.username }}:${{ inputs.token }}@github.com/${{ inputs.username }}/${{ inputs.reponame }}.git ${{ inputs.basebranchname }}:gh-pages
+        shell: bash
