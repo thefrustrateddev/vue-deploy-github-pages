@@ -29,7 +29,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - id: Build-Deploy-Vue
-      uses: thefrustrateddev/github-action-test@master
+      uses: thefrustrateddev/vue-deploy-github-pages@v1.0.0
       with:
         username: '{{your_username}}'
         reponame: '{{your_repositoryname}}'
