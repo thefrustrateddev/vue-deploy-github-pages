@@ -1,5 +1,5 @@
 name: 'Deploy Vue Apps to Github Pages'
-description: 'This git hub action build the vue app and creates a new branch names gh-pages to deploy them to github pages.#1'
+description: 'This github action builds the vue app and creates a new branch names gh-pages to deploy the repo to github pages.'
 author: thefrustrateddev
 branding:
   icon: 'play'  
